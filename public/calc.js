@@ -1,8 +1,7 @@
 $(document).ready(function() {
     calculator();
     assignListenersByClass();
-    // buildTable();
-    // buildTableCells();
+
 });
 
 var calculator = function() {
@@ -22,15 +21,6 @@ var calculator = function() {
     var $tableData = $('<td>');
     $tableBody.append($tableData);
 
-
-    // var buildTable = function() {
-    //     $tableData = $('<td>');
-    //     $tableData.attr('colspan', 5);
-    //     $tableData.attr('id', 'display');
-    //     $tableHead.append($tableData);
-    // }
-
-
     var $tableHeader = $('<th>');
 
     var $displayForm = $('<form>');
@@ -42,15 +32,6 @@ var calculator = function() {
     $displayForm.append($calcDisplay);
     $tableHeader.append($displayForm);
     $tableBody.append($tableHeader);
-    // var buildTableCells = function() {
-        // for (var i = 0; i < 4; i++) {
-        //     var $tableRow = $('<tr>');
-        //     $tableRow.attr('id', 'row' + i);
-        //     console.log('row' + i);
-        //
-        //     $tableBody.append($tableRow);
-        // }
-    // }
 
   //***********************************************
   //***********************************************
@@ -101,38 +82,25 @@ var calculator = function() {
   //***********************************************
   //***********************************************
 
-  var $tableRow4 = $('<tr>')
+  var $tableRow5 = $('<tr>')
 
     $tableData = $('<td>C</td>');
     $tableData.addClass('clear');
     $tableData.addClass('button');
     $tableData.attr('id', 'C');
     $tableData.attr('value','C');
-    $tableRow4.append($tableData)
-    $tableBody.append($tableRow4);
+    $tableRow5.append($tableData)
+    $tableBody.append($tableRow5);
   //***********************************************
   //***********************************************
   //***********************************************
 
-  // var $tableRow4 = $('<tr>')
-  //
-  //   $tableData = $('<td>.</td>');
-  //   $tableData.addClass('decimal');
-  //   $tableData.addClass('button');
-  //   $tableData.attr('id', '.');
-  //   $tableData.attr('value','.');
-  //   $tableRow4.append($tableData)
-  //   $tableBody.append($tableRow4);
-
-    //***********************************************
-    //***********************************************
-    //***********************************************
-
+    var $tableRow4 = $('<tr>')
         $tableData = $('<td>');
         $tableData.addClass('number');
         $tableData.addClass('button');
         $tableData.attr('id', 0);
-        // $tableData.attr('rowspan', 2)
+        $tableData.attr('colspan', 3)
         $tableRow4.append($tableData);
         $tableBody.append($tableRow4);
 
@@ -144,17 +112,25 @@ var calculator = function() {
     $tableData.addClass('operator');
     $tableData.addClass('button');
     $tableData.attr('id', 'sum');
-    // $tableData.attr('value','clear');
-    $tableRow4.append($tableData)
-    $tableBody.append($tableRow4);
+    $tableRow5.append($tableData)
+    $tableBody.append($tableRow5);
+
+    $tableData = $('<td>');
+    $tableData.addClass('operators');
+    $tableData.addClass('button');
+    $tableData.attr('id', '+');
+
+    $tableRow5.append($tableData);
+    $tableBody.append($tableRow5);
 
   //***********************************************
   //***********************************************
   //***********************************************
+
 
 var $tableRow5 = $('<tr>');
 
-    var operatorsArr = ['+', '-', '/', '*'];
+    var operatorsArr = ['-', '/', '*'];
     operatorsArr.forEach(function(v, i, a) {
         $tableData = $('<td>' + v + '</td>');
         $tableData.addClass('operators');
@@ -185,33 +161,6 @@ var $tableRow5 = $('<tr>');
                     $('#screen').attr('value', $('#screen').attr('value') + $(this).attr('id'));
                 });
             });
-
-            // var displayOperatorButtons = function() {
-            //     //some more code to display all of the operator buttons
-            //     var $opCells = $('.operator');
-            //     var operators = ['/', '*', '-', '+'];
-            //     var i = 0;
-            //     $opCells.each(function() {
-            //         $(this).text(operators[i]);
-            //         $(this).attr('val', operators[i]);
-            //
-            //         $(this).click(function(e) {
-            //             var displayText = '';
-            //             var displayTextLast = '';
-            //             if ($('#screen').attr('value').length > 0) {
-            //                 displayText = $('#screen').attr('value');
-            //                 displayTextLast = displayText.slice(-1);
-            //             }
-            //
-            //             if (displayTextLast === '/' || displayTextLast === '*' ||
-            //                 displayTextLast === '+' || displayTextLast === '-') {
-            //                 $('#screen').attr('value', displayText.slice(0, -1));
-            //             }
-            //             $('#screen').attr('value', $('#screen').attr('value') + $(this).attr('val'));
-            //         });
-            //         i++;
-            //     });
-            // };
 
         };
         var displayOperatorButtons = function() {
@@ -246,17 +195,6 @@ var $tableRow5 = $('<tr>');
 
         var displayOtherButtons = function() {
             //even more code to display various other buttons
-            // $decimal = $('#decimal');
-            // $decimal.text('.');
-            // $decimal.click(function(e) {
-            //     var displayText = '';
-            //     if ($('#screen').attr('value').length > 0) {
-            //         displayText = $('#screen').attr('value');
-            //     }
-            //     // if(displayText.indexOf('.') === -1) {
-            //     $('#screen').attr('value', $('#screen').attr('value') + '.');
-            //     // }
-            // });
 
             var $clear = $('.clear');
             $clear.on('click', function(e) {
@@ -288,8 +226,9 @@ var $tableRow5 = $('<tr>');
                 }
                 operands.push(operand);
 
-                var num1;
-                var num2;
+
+
+
                 var multiply = function(num1, num2){
                   var total = num1 * num2;
                   console.log(total);
@@ -314,16 +253,20 @@ var $tableRow5 = $('<tr>');
                   $('#screen').attr('value', total);
                 };
 
+
                 // for (i = 0; i < operands.length; i++) {
                 if (operands[1]) {
                     // var op1 = ?
                     if (operators[0] === '/') {
                         sum = divide(operands[0], operands[1]);
-                    } else if (operators[0] === '*') {
+                    }
+                      else if (operators[0] === '*') {
                         sum = multiply(operands[0], operands[1]);
-                    } else if (operators[0] === '-') {
+                    }
+                      else if (operators[0] === '-') {
                         sum = subtract(operands[0], operands[1]);
-                    } else if (operators[0] === '+') {
+                    }
+                      else if (operators[0] === '+') {
                         sum = add(operands[0], operands[1]);
                     }
                 }

@@ -6,15 +6,20 @@ table{
   background-color: lightgray;
   border-width: 10px;
   border-color: orange;
+  text-align: center;
 }
 
-thead{
+td {
+}
 
+#screen{
+  column-span: 3;
 }
 
 tbody{
 
 }
+
 
 
 #display{
@@ -30,8 +35,12 @@ form{
 }
 
 .button{
-background-color: lightgray;
+background-color: gray;
 font-size: 60px;
+min-width: 90px;
+min-height: 90px
+display: inline;
+padding: 0;
 }
 
 #clear{
